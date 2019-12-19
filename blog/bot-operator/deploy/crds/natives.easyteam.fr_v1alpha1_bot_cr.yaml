@@ -1,0 +1,7 @@
+apiVersion: natives.easyteam.fr/v1alpha1
+kind: Bot
+metadata:
+  name: red-bot
+spec:
+  alias: red
+ 

@@ -1,0 +1,162 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "natives.easyteam.fr/v1alpha1",
+          "kind": "Bot",
+          "metadata": {
+            "name": "red-bot"
+          },
+          "spec": {
+            "alias": "red"
+          }
+        }
+      ]
+    capabilities: Basic Install
+  name: bot-operator.v0.0.1
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: Bot is the Schema for the bots API
+      kind: Bot
+      name: bots.natives.easyteam.fr
+      version: v1alpha1
+      displayName: Bot
+  description: Placeholder description
+  displayName: Bot Operator
+  install:
+    spec:
+      deployments:
+      - name: bot-operator
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              name: bot-operator
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                name: bot-operator
+            spec:
+              containers:
+              - command:
+                - bot-operator
+                env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                - name: POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: OPERATOR_NAME
+                  value: bot-operator
+                image: quay.io/easyteam/bot-controller:v0.0.1
+                imagePullPolicy: Always
+                name: bot-operator
+                resources: {}
+              serviceAccountName: bot-operator
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - pods
+          - services
+          - services/finalizers
+          - endpoints
+          - persistentvolumeclaims
+          - events
+          - configmaps
+          - secrets
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - daemonsets
+          - replicasets
+          - statefulsets
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - servicemonitors
+          verbs:
+          - get
+          - create
+        - apiGroups:
+          - apps
+          resourceNames:
+          - bot-operator
+          resources:
+          - deployments/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - ""
+          resources:
+          - pods
+          verbs:
+          - get
+        - apiGroups:
+          - apps
+          resources:
+          - replicasets
+          - deployments
+          verbs:
+          - get
+        - apiGroups:
+          - natives.easyteam.fr
+          resources:
+          - '*'
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        serviceAccountName: bot-operator
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - operators
+  maintainers:
+  - email: contact@easyteam.fr
+    name: Easyteam
+  maturity: alpha
+  provider:
+    name: Easyteam
+  replaces: bot-operator.v0.0.0
+  version: 0.0.1
