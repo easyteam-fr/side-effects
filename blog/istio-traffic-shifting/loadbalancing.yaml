@@ -25,11 +25,9 @@ spec:
   http:
   - route:
     - destination:
-        host: helloworld
-        subset: v1
+        host: helloworld-v1
       weight: 80
     - destination:
-        host: helloworld
-        subset: v2
+        host: helloworld-v2
       weight: 20
 ---
