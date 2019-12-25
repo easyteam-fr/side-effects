@@ -21,7 +21,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - nginx-gateway
+  - helloworld-gateway
   http:
   - route:
     - destination:
