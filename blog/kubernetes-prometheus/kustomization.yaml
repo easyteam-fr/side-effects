@@ -7,8 +7,12 @@ resources:
   - prometheus-clusterrolebinding.yaml
   - prometheus-statefulset.yaml
   - prometheus-service.yaml
+  - grafana-deployment.yaml
+  - grafana-service.yaml
 configMapGenerator:
 - name: prometheus
   files:
     - prometheus.yml
-
+- name: grafana
+  files:
+    - dashboard.yaml
