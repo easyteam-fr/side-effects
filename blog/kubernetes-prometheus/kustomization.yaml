@@ -15,4 +15,4 @@ configMapGenerator:
     - prometheus.yml
 - name: grafana
   files:
-    - dashboard.yaml
+    - datasources.yaml

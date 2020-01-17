@@ -22,13 +22,13 @@ spec:
             - containerPort: 3000
               name: grafana
           volumeMounts:
-            - mountPath: /etc/grafana/provisioning/datasource
+            - mountPath: /etc/grafana/provisioning/datasources
               name: grafana-yaml
       volumes:
         - name: grafana-yaml
           configMap:
             name: grafana
             items:
-              - key: datasource.yaml
-                path: datasource.yaml
+              - key: datasources.yaml
+                path: datasources.yaml
 
