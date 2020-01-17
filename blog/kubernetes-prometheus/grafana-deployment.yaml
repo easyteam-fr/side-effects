@@ -29,6 +29,6 @@ spec:
           configMap:
             name: grafana
             items:
-              - key: datasources.yaml
+              - key: grafana-datasources.yaml
                 path: datasources.yaml
 

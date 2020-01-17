@@ -29,6 +29,6 @@ spec:
           configMap:
             name: prometheus
             items:
-            - key: prometheus.yml
+            - key: prometheus-config.yaml
               path: prometheus.yml
 

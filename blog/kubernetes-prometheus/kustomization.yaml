@@ -12,7 +12,7 @@ resources:
 configMapGenerator:
 - name: prometheus
   files:
-    - prometheus.yml
+    - prometheus-config.yaml
 - name: grafana
   files:
-    - datasources.yaml
+    - grafana-datasources.yaml
