@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:master-ubuntu
+          env:
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              value: admin
+          ports:
+            - containerPort: 3000
+              name: grafana
+          volumeMounts:
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-yaml
+      volumes:
+        - name: grafana-yaml
+          configMap:
+            name: grafana
+            items:
+              - key: grafana-datasources.yaml
+                path: datasources.yaml
+
