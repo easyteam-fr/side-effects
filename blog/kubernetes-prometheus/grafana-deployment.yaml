@@ -23,12 +23,20 @@ spec:
               name: grafana
           volumeMounts:
             - mountPath: /etc/grafana/provisioning/datasources
-              name: grafana-yaml
+              name: grafana-datasources
+            - mountPath: /etc/grafana/provisioning/dashboards
+              name: grafana-dashboards
       volumes:
-        - name: grafana-yaml
+        - name: grafana-datasources
           configMap:
-            name: grafana
+            name: grafana-datasources
             items:
               - key: grafana-datasources.yaml
                 path: datasources.yaml
+        - name: grafana-dashboards
+          configMap:
+            name: grafana-dashboards
+            items:
+              - key: grafana-dashboard-metrics-server.json
+                path: metrics-server.json
 
