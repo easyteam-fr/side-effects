@@ -9,6 +9,7 @@ rules:
     - configmaps
     - secrets
     - nodes
+    - nodes/proxy
     - pods
     - services
     - resourcequotas
