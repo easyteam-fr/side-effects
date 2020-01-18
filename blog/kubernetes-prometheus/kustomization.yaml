@@ -18,4 +18,5 @@ configMapGenerator:
     - grafana-datasources.yaml
 - name: grafana-dashboards
   files:
+    - grafana-dashboards.yaml
     - grafana-dashboard-metrics-server.json
