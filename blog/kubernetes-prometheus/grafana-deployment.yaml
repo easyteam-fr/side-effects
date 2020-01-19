@@ -39,6 +39,8 @@ spec:
             items:
               - key: grafana-dashboard-metrics-server.json
                 path: metrics-server.json
+              - key: grafana-dashboard-prometheus-app.json
+                path: prometheus-app.json
               - key: grafana-dashboards.yaml
                 path: dashboard.yml
 
