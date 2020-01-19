@@ -20,3 +20,4 @@ configMapGenerator:
   files:
     - grafana-dashboards.yaml
     - grafana-dashboard-metrics-server.json
+    - grafana-dashboard-prometheus-app.json
