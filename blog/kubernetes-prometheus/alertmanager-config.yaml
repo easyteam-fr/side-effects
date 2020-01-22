@@ -1,0 +1,13 @@
+global:
+  smtp_smarthost: 'localhost:25'
+
+route:
+  group_by: [alertname]
+  receiver: email-me
+
+receivers:
+- name: email-me
+  email_configs:
+  - to: "admin@localhost"
+    from: "admin@localhost" 
+    smarthost: localhost:25

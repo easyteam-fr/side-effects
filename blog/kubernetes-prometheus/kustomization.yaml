@@ -22,3 +22,6 @@ configMapGenerator:
     - grafana-dashboards.yaml
     - grafana-dashboard-metrics-server.json
     - grafana-dashboard-prometheus-app.json
+- name: alertmanager
+  files:
+    - alertmanager-config.yaml
