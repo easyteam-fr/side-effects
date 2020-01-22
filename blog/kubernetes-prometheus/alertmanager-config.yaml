@@ -1,7 +1,6 @@
 global:
 
 route:
-
   group_by: ['instance', 'alertname']
   receiver: "default"
   routes:
