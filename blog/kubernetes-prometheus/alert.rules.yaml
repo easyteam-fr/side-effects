@@ -1,0 +1,28 @@
+groups:
+- name: Memory-usage
+  rules:
+  - alert: 'High memory usage'
+    expr: ceil((((node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) / node_memory_MemTotal_bytes) * 100)) > 20
+    labels:
+      severity: 'critical'
+    annotations:
+      title: "Memory Usage"
+      description: 'Memory usage threshold set to `20%`.'
+      summary: "Memory usage is `{{humanize $value}}%`"
+      host: "{{$labels.instance}}"
+ # Alert for any instance that is unreachable for >5 minutes.
+  - alert: InstanceDown
+    expr: up == 1
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.instance }} down"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
+  - alert: PodTerminated
+    expr: kube_pod_container_status_terminated == 1
+    labels:
+    annotations:
+      summary: "Pod down"
+      description: "Pod has been down for more than 5 minutes."
+  - alert: pod--sys--down
+    expr: up{deployment="grafana"} == 1 
