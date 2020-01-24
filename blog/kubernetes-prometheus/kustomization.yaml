@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - alertmanager-deployment.yaml
+  - alertmanager-service.yaml
   - prometheus-clusterrole.yaml
   - prometheus-serviceaccount.yaml
   - prometheus-clusterrolebinding.yaml
