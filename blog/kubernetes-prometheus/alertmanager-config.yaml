@@ -10,6 +10,7 @@ route:
     - match:
         severity: critical
         receiver: default
+
 receivers:
 - name: default
   email_configs:
