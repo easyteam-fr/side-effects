@@ -21,10 +21,17 @@ var (
 	},
 		[]string{"url"},
 	)
+	up = prometheus.NewCounter(prometheus.CounterOpts{
+		Name: "up",
+		Help: "shows if the process is up",
+	})
 )
 
 func init() {
+	up.Inc()
 	prometheus.MustRegister(invocations)
+	prometheus.MustRegister(up)
+
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
