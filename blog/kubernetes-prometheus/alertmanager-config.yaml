@@ -14,14 +14,14 @@ route:
 receivers:
 - name: default
   email_configs:
-  - to: "admin@localhost"
-    from: "admin@localhost"
-    auth_username: "admin@localhost"
-    auth_password: "smtppassword"
-    smarthost: smtp.localhost:25
+  - to: "alertmemanager@gmail.com"
+    from: "alertmemanager@gmail.com"
+    auth_username: "alertmemanager@gmail.com"
+    auth_password: "poiuytrezA4321"
+    smarthost: smtp.gmail.com:587
 
 - name: slack
   slack_configs:
-  - api_url: 'https://hooks.slack.com/services/foo'
+  - api_url: 'https://hooks.slack.com/services/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'
     channel: '#prod_health'
     send_resolved: true 
