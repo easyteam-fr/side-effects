@@ -21,17 +21,18 @@ var (
 	},
 		[]string{"url"},
 	)
-	up = prometheus.NewCounter(prometheus.CounterOpts{
+	up = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "up",
 		Help: "shows if the process is up",
-	})
+	},
+		[]string{"service"},
+	)
 )
 
 func init() {
-	up.Inc()
+	up.WithLabelValues("prometheus-app").Inc()
 	prometheus.MustRegister(invocations)
 	prometheus.MustRegister(up)
-
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
