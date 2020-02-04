@@ -1,0 +1,9 @@
+groups:
+- name: Instance_down
+  - alert: prometheus_app_down
+    expr: absent(up{service="prometheus-app"}) == 1
+    labels:
+      severity: critical
+    annotations:
+      summary: "Prometheus-app is down"
+      description: "Prometheus-app is down" 

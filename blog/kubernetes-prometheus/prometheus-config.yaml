@@ -102,4 +102,12 @@ scrape_configs:
     - source_labels: [__meta_kubernetes_service_name]
       regex: prometheus-server
       action: drop
-  
+
+rule_files:
+  - '/etc/prometheus/alert.rules.yaml'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets:
+        - 'alertmanager:9093'

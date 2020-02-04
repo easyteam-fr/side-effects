@@ -31,4 +31,6 @@ spec:
             items:
             - key: prometheus-config.yaml
               path: prometheus.yml
+            - key: alert.rules.yaml
+              path: alert.rules.yaml
 
