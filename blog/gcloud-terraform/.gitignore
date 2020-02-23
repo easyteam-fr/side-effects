@@ -1,0 +1,6 @@
+/account.json
+/terraform.*
+/.terraform/*
+/variables.auto.tfvars
+/google
+/ca.crt

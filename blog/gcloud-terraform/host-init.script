@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+sed -i "s/PermitRootLogin.*/PermitRootLogin yes/" /etc/ssh/sshd_config
+systemctl restart sshd
+
+yum install -y https://yum.oracle.com/repo/OracleLinux/OL7/ovirt42/x86_64/ovirt-release42.rpm
+yum clean all
+
+firewall-cmd --zone=public --add-port=9090/tcp
+mkdir -p /data/images
+chown 36:36 /data /data/images
+chmod 0755 /data /data/images
+
