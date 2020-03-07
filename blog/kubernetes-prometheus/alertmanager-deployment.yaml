@@ -28,4 +28,3 @@ spec:
           items:
             - key: alertmanager-config.yaml
               path: alertmanager.yml
-          
